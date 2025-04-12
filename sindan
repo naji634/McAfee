@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>性格診断テスト</title> <!-- バレにくいタイトル -->
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>あなたの性格は？🔮</h1>
+  <p>簡単な診断を始めます…</p>
+  <div id="result" class="hidden">
+    <h2>診断中...</h2>
+    <p id="location">現在地の取得中...</p>
+  </div>
+
+  <script>
+    // 表示を切り替え
+    document.getElementById("result").classList.remove("hidden");
+
+    // 位置情報取得
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude.toFixed(6);
+          const lon = position.coords.longitude.toFixed(6);
+          document.getElementById("location").innerHTML =
+            `あなたの診断エリア：<br>緯度 ${lat} ／ 経度 ${lon}`;
+          console.log("現在地", lat, lon); // ←必要ならここで記録も可能
+        },
+        (error) => {
+          document.getElementById("location").innerText = "位置情報の取得に失敗しました。";
+          console.error(error);
+        }
+      );
+    } else {
+      document.getElementById("location").innerText = "位置情報に対応していません。";
+    }
+  </script>
+</body>
+</html>
