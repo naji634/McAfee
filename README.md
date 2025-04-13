@@ -132,7 +132,7 @@
         setTimeout(() => {
           const div = document.createElement("div");
           div.className = `chat-message ${msg.sender}`;
-          div.textContent = (msg.sender === "user" ? "あなた: " : "犯人: ") + msg.text;
+          div.textContent = (msg.sender === "user" ? "あなた: " : "Unkown user: ") + msg.text;
           chat.appendChild(div);
           chat.scrollTop = chat.scrollHeight;
 
