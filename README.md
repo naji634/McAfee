@@ -10,97 +10,100 @@
       font-family: 'Courier New', monospace;
       text-align: center;
       overflow: hidden;
+      animation: bgFlash 1s infinite alternate;
     }
-    h1 {
+
+    @keyframes bgFlash {
+      0% { background: black; }
+      100% { background: darkred; }
+    }
+
+    h1, p {
+      margin: 20px;
       font-size: 2em;
-      animation: blink 0.6s infinite alternate;
     }
-    @keyframes blink {
-      0% { opacity: 1; }
-      100% { opacity: 0.3; }
+
+    .glitch {
+      animation: glitch 0.3s infinite;
     }
-    .flashing-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(255, 0, 0, 0.1);
-      animation: flashbg 1s infinite alternate;
-      z-index: -1;
+
+    @keyframes glitch {
+      0% { transform: translate(1px, -1px); }
+      25% { transform: translate(-1px, 1px); }
+      50% { transform: translate(1px, 1px); }
+      75% { transform: translate(-1px, -1px); }
+      100% { transform: translate(0, 0); }
     }
-    @keyframes flashbg {
-      0% { background: rgba(255,0,0,0.1); }
-      100% { background: rgba(255,0,0,0.4); }
+
+    #countdown {
+      font-size: 3em;
+      font-weight: bold;
     }
-    .terminal {
-      margin-top: 40px;
-      background: #111;
-      color: lime;
-      padding: 20px;
-      width: 80%;
-      height: 200px;
-      margin-left: auto;
-      margin-right: auto;
-      overflow: auto;
-      text-align: left;
-      font-size: 0.9em;
-      border: 1px solid lime;
+
+    button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="flashing-bg"></div>
-  <h1 id="message">スキャン中…</h1>
-  <div class="terminal" id="terminal">C:\system32> _</div>
-  <audio id="alarm" autoplay loop>
-    <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3" type="audio/mpeg">
-  </audio>
+  <h1 id="message">スキャン中...</h1>
+  <button onclick="startRansom()">スキャンを続行</button>
 
   <script>
-    // 戻る防止
+    // 無限戻り防止
     history.pushState(null, null, location.href);
     window.onpopstate = () => history.go(1);
 
-    // タイピング演出
-    const text = "⚠️ ウイルスが検出されました。今すぐ対処してください。";
-    let i = 0;
-    function typeEffect() {
-      if (i < text.length) {
-        document.getElementById("message").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeEffect, 80);
-      }
-    }
-
-    // 疑似コマンド操作演出
-    const terminalLines = [
-      "C:\\system32> 調査中...",
-      "C:\\system32> systemOverride.exe 起動",
-      "C:\\system32> ファイルを暗号化中...",
-      "C:\\system32> Windows Defender 停止",
-      "C:\\system32> ハードディスクの内容を送信中...",
-      "C:\\system32> 完了。",
+    const ransomMessage = [
+      "⚠️ システムが重大なウイルスに感染しました。",
+      "💀 全ファイルは暗号化されました。",
+      "🧨 復旧するには身代金が必要です。",
+      "⏳ 制限時間以内に支払わないと全データは消去されます。",
+      "🪙 0.01 BTC を以下のウォレットに送ってください。",
+      "→ bc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "⌛ タイマー："
     ];
-    let t = 0;
-    function fakeTerminal() {
-      if (t < terminalLines.length) {
-        document.getElementById("terminal").innerHTML += "<br>" + terminalLines[t];
-        t++;
-        setTimeout(fakeTerminal, 1000);
+
+    let i = 0;
+    let message = document.getElementById("message");
+
+    function typeMessage() {
+      if (i < ransomMessage.length) {
+        message.innerHTML = ransomMessage[i];
+        i++;
+        setTimeout(typeMessage, 2000);
       } else {
-        // 終わったら警告ポップアップ
-        setTimeout(() => {
-          alert("システムは乗っ取られました。再起動してください。");
-        }, 1500);
+        startCountdown();
       }
     }
 
-    // フルスクリーン＆スタート
-    window.onload = () => {
-      document.getElementById("message").innerHTML = "";
-      typeEffect();
-      fakeTerminal();
-      document.documentElement.requestFullscreen?.();
-    };
+    function startRansom() {
+      document.documentElement.requestFullscreen();
+      document.querySelector("button").style.display = "none";
+      message.classList.add("glitch");
+      setTimeout(typeMessage, 1000);
+    }
+
+    function startCountdown() {
+      const countdown = document.createElement("div");
+      countdown.id = "countdown";
+      document.body.appendChild(countdown);
+
+      let time = 60; // 60秒カウントダウン
+      const timer = setInterval(() => {
+        countdown.textContent = time + " 秒";
+        time--;
+        if (time < 0) {
+          clearInterval(timer);
+          countdown.textContent = "💣 ファイルは削除されました。";
+        }
+      }, 1000);
+    }
   </script>
 </body>
 </html>
