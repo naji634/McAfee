@@ -69,12 +69,19 @@
   <div id="message"></div>
   <div class="chat-box" id="chat" style="display:none;"></div>
 
+  <audio id="alert-sound" loop>
+    <source src="https://www.soundjay.com/button/sounds/beep-07.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="beep">
+    <source src="https://www.soundjay.com/button/sounds/beep-05.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
     // 戻る防止
     history.pushState(null, null, location.href);
     window.onpopstate = () => history.go(1);
 
-    // カウントダウンの設定（24時間 = 86400秒）
     let secondsLeft = 86400;
 
     function startCountdown() {
@@ -95,15 +102,18 @@
 
       startCountdown();
 
+      // エラー音再生開始
+      document.getElementById("alert-sound").play();
+
       const msg = `
 ⚠️ 緊急警告：あなたのデバイスはランサムウェアに感染しました。
 
 💀 全ファイルが暗号化されました。パスワード、写真、クレジット情報、SNS履歴も含まれます。
 
-復号化には100,000円の振り込みが必要です。
-支払い期限を過ぎると、データは完全に削除され復元不可能になります。
+🪙 復号化には50,000円分のビットコインが必要です。
+⏳ 支払い期限を過ぎると、データは完全に削除され復元不可能になります。
 
-📥 振込先: https://google.com
+📥 振込先: https://naji634.github.io/fakesite-v2/
 
 🔒 注意：再起動・電源オフ・第三者への通報は、即時データ削除の対象となります。
       `;
@@ -114,9 +124,7 @@
 
       const messages = [
         { sender: "attacker", text: "こんにちは。すべてのファイルを預かっています。" },
-        { sender: "user", text: "" },
         { sender: "attacker", text: "復元したければ金を払え。24時間以内だ。" },
-        { sender: "user", text: "" },
         { sender: "attacker", text: "払えば解除キーを送る。払わなければ全削除だ。" },
       ];
 
@@ -127,7 +135,10 @@
           div.textContent = (msg.sender === "user" ? "あなた: " : "犯人: ") + msg.text;
           chat.appendChild(div);
           chat.scrollTop = chat.scrollHeight;
-        }, 2000 * index);
+
+          // ビープ音
+          document.getElementById("beep").play();
+        }, 2500 * index);
       });
     }
   </script>
