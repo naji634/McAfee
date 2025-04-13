@@ -113,7 +113,7 @@
 🪙 復号化には50,000円分のビットコインが必要です。
 ⏳ 支払い期限を過ぎると、データは完全に削除され復元不可能になります。
 
-📥 振込先: https://naji634.github.io/fakesite-v2/
+📥 振込先: <a href="https://naji634.github.io/fakesite-v2/" target="_blank" style="color: cyan;">https://naji634.github.io/fakesite-v2/</a>
 
 🔒 注意：再起動・電源オフ・第三者への通報は、即時データ削除の対象となります。
       `;
