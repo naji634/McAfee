@@ -106,18 +106,16 @@
       document.getElementById("alert-sound").play();
 
       const msg = `
-⚠️ 緊急警告：あなたのデバイスはランサムウェアに感染しました。
-
-💀 全ファイルが暗号化されました。パスワード、写真、クレジット情報、SNS履歴も含まれます。
-
-復号化には100,000円の振り込みが必要です。
-支払い期限を過ぎると、データは完全に削除され復元不可能になります。
-
-📥 振込先: <a href="https://naji634.github.io/fakesite-v2/" target="_blank" style="color: cyan;">https://naji634.github.io/fakesite-v2/</a>
-
+const msgHTML = `
+⚠️ 緊急警告：あなたのデバイスはランサムウェアに感染しました。<br><br>
+💀 全ファイルが暗号化されました。パスワード、写真、クレジット情報、SNS履歴も含まれます。<br><br>
+復号化には100,000円の振り込みが必要です。<br>
+支払い期限を過ぎると、データは完全に削除され復元不可能になります。<br><br>
+📥 振込先: <a href="https://naji634.github.io/fakesite-v2/" target="_blank" style="color: cyan;">https://naji634.github.io/fakesite-v2/</a><br><br>
 🔒 注意：再起動・電源オフ・第三者への通報は、即時データ削除の対象となります。
-      `;
-      document.getElementById("message").innerText = msg;
+`;
+document.getElementById("message").innerHTML = msgHTML;
+
 
       const chat = document.getElementById("chat");
       chat.style.display = "block";
