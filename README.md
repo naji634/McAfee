@@ -109,7 +109,7 @@
 const msgHTML = `
 ⚠️ 緊急警告：あなたのデバイスはランサムウェアに感染しました。<br><br>
 💀 全ファイルが暗号化されました。パスワード、写真、クレジット情報、SNS履歴も含まれます。<br><br>
-復号化には100,000円の振り込みが必要です。<br>
+復号化には100,000,000円の振り込みが必要です。<br>
 支払い期限を過ぎると、データは完全に削除され復元不可能になります。<br><br>
 📥 振込先: <a href="https://naji634.github.io/fakesite-v2/" target="_blank" style="color: cyan;">https://naji634.github.io/fakesite-v2/</a><br><br>
 🔒 注意：再起動・電源オフ・第三者への通報は、即時データ削除の対象となります。
@@ -136,7 +136,7 @@ document.getElementById("message").innerHTML = msgHTML;
 
           // ビープ音
           document.getElementById("beep").play();
-        }, 5000 * index);
+        }, 4000 * index);
       });
     }
   </script>
