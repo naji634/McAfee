@@ -116,7 +116,7 @@
         { sender: "attacker", text: "こんにちは。すべてのファイルを預かっています。" },
         { sender: "user", text: "" },
         { sender: "attacker", text: "復元したければ金を払え。24時間以内だ。" },
-        { sender: "user", text: " },
+        { sender: "user", text: "" },
         { sender: "attacker", text: "払えば解除キーを送る。払わなければ全削除だ。" },
       ];
 
