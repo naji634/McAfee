@@ -136,7 +136,7 @@ document.getElementById("message").innerHTML = msgHTML;
 
           // ビープ音
           document.getElementById("beep").play();
-        }, 2500 * index);
+        }, 5000 * index);
       });
     }
   </script>
