@@ -1,144 +1,135 @@
-<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>⚠️ セキュリティ警告</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>マカフィーを装う偽のポップアップ通知と問題の解消方法</title>
   <style>
     body {
-      background-color: black;
-      color: red;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 50px 20px;
+      font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      color: #333;
     }
-
-    #message {
-      font-size: 20px;
-      line-height: 2;
-      white-space: pre-wrap;
-      margin: 30px 0;
-    }
-
-    #countdown {
-      font-size: 28px;
-      color: yellow;
-      margin-top: 10px;
-    }
-
-    .chat-box {
-      width: 90%;
-      max-width: 600px;
-      margin: 40px auto;
-      background: #111;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: left;
-      border: 2px solid red;
-    }
-
-    .chat-message {
-      margin: 10px 0;
-    }
-
-    .user {
-      color: #0ff;
-    }
-
-    .attacker {
-      color: #f33;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 18px;
-      background-color: red;
+    header {
+      background-color: #d32f2f;
       color: white;
-      border: none;
-      cursor: pointer;
+      padding: 20px;
+      text-align: center;
     }
-
-    button:hover {
-      background-color: darkred;
+    nav {
+      background-color: #b71c1c;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      color: #d32f2f;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    footer {
+      background-color: #d32f2f;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 40px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .note {
+      background-color: #fff3cd;
+      border-left: 6px solid #ffeeba;
+      padding: 15px;
+      margin: 20px 0;
     }
   </style>
 </head>
 <body>
-  <h1>スキャン中…</h1>
-  <button onclick="showWarning()">スキャンを続行</button>
-  <div id="countdown"></div>
-  <div id="message"></div>
-  <div class="chat-box" id="chat" style="display:none;"></div>
+  <header>
+    <h1>マカフィーを装う偽のポップアップ通知と問題の解消方法</h1>
+  </header>
+  <nav>
+    <a href="#">製品</a>
+    <a href="#">サポート</a>
+    <a href="#">マイ アカウント</a>
+  </nav>
+  <main>
+    <section class="section">
+      <h2>はじめに</h2>
+      <p>近年、マカフィーを装った偽のポップアップ通知が増加しています。これらの通知は、ユーザーを騙してセキュリティソフトの購入や個人情報の提供を促す詐欺の手口です。</p>
+    </section>
 
-  <audio id="alert-sound" loop>
-    <source src="https://www.soundjay.com/button/sounds/beep-07.mp3" type="audio/mpeg">
-  </audio>
+    <section class="section">
+      <h2>偽のポップアップ通知とは？</h2>
+      <p>偽のポップアップ通知は、信頼できるセキュリティソフトを装い、ウイルス感染やシステムエラーを警告するメッセージを表示します。これらの通知は、ユーザーの不安を煽り、偽のソフトウェアのインストールや個人情報の入力を誘導します。</p>
+    </section>
 
-  <audio id="beep">
-    <source src="https://www.soundjay.com/button/sounds/beep-05.mp3" type="audio/mpeg">
-  </audio>
+    <section class="section">
+      <h2>偽の通知の特徴と事例</h2>
+      <ul>
+        <li>「ウイルスが検出されました」などの緊急性を強調するメッセージ</li>
+        <li>マカフィーのロゴや名称を不正に使用</li>
+        <li>不審な電話番号やリンクの表示</li>
+        <li>音声やアニメーションによる警告</li>
+      </ul>
+    </section>
 
-  <script>
-    // 戻る防止
-    history.pushState(null, null, location.href);
-    window.onpopstate = () => history.go(1);
+    <section class="section">
+      <h2>ポップアップ通知を無効化する方法</h2>
+      <p>以下の手順で、ブラウザの通知設定を確認し、不審なサイトからの通知をブロックできます。</p>
+      <h3>Google Chromeの場合</h3>
+      <ol>
+        <li>Chromeの設定を開く</li>
+        <li>「プライバシーとセキュリティ」 &gt; 「サイトの設定」 &gt; 「通知」を選択</li>
+        <li>不審なサイトを「ブロック」または「削除」</li>
+      </ol>
+      <h3>Microsoft Edgeの場合</h3>
+      <ol>
+        <li>Edgeの設定を開く</li>
+        <li>「Cookieとサイトのアクセス許可」 &gt; 「通知」を選択</li>
+        <li>不審なサイトを「ブロック」または「削除」</li>
+      </ol>
+    </section>
 
-    let secondsLeft = 86400;
+    <section class="section">
+      <h2>マカフィー製品をご利用の方へ</h2>
+      <ul>
+        <li><strong>マイ アカウント</strong>で契約状況を確認</li>
+        <li>PCのスキャンを実行して脅威を検出</li>
+        <li>ウェブアドバイザー機能を有効化して安全なブラウジングをサポート</li>
+      </ul>
+    </section>
 
-    function startCountdown() {
-      setInterval(() => {
-        if (secondsLeft <= 0) return;
-        secondsLeft--;
-        const h = String(Math.floor(secondsLeft / 3600)).padStart(2, '0');
-        const m = String(Math.floor((secondsLeft % 3600) / 60)).padStart(2, '0');
-        const s = String(secondsLeft % 60).padStart(2, '0');
-        document.getElementById("countdown").innerText = `⏳ 残り時間: ${h}:${m}:${s}`;
-      }, 1000);
-    }
+    <section class="section">
+      <h2>今後の被害を防ぐために</h2>
+      <ul>
+        <li>信頼できるサイト以外からの通知は許可しない</li>
+        <li>不審なリンクや添付ファイルを開かない</li>
+        <li>最新のセキュリティソフトを導入し、常に更新を行う</li>
+      </ul>
+    </section>
 
-    function showWarning() {
-      document.documentElement.requestFullscreen();
-      document.querySelector("button").style.display = "none";
-      document.querySelector("h1").style.display = "none";
-
-      startCountdown();
-
-      // エラー音再生開始
-      document.getElementById("alert-sound").play();
-
-      const msg = `
-const msgHTML = `
-⚠️ 緊急警告：あなたのデバイスはランサムウェアに感染しました。<br><br>
-💀 全ファイルが暗号化されました。パスワード、写真、クレジット情報、SNS履歴も含まれます。<br><br>
-復号化には100,000,000円の振り込みが必要です。<br>
-支払い期限を過ぎると、データは完全に削除され復元不可能になります。<br><br>
-📥 振込先: <a href="https://naji634.github.io/fakesite-v2/" target="_blank" style="color: cyan;">https://naji634.github.io/fakesite-v2/</a><br><br>
-🔒 注意：再起動・電源オフ・第三者への通報は、即時データ削除の対象となります。
-`;
-document.getElementById("message").innerHTML = msgHTML;
-
-
-      const chat = document.getElementById("chat");
-      chat.style.display = "block";
-
-      const messages = [
-        { sender: "attacker", text: "こんにちは。すべてのファイルを預かっています。" },
-        { sender: "attacker", text: "復元したければ金を払え。24時間以内だ。" },
-        { sender: "attacker", text: "払えば解除キーを送る。払わなければ全削除だ。" },
-      ];
-
-      messages.forEach((msg, index) => {
-        setTimeout(() => {
-          const div = document.createElement("div");
-          div.className = `chat-message ${msg.sender}`;
-          div.textContent = (msg.sender === "user" ? "あなた: " : "Unkown user: ") + msg.text;
-          chat.appendChild(div);
-          chat.scrollTop = chat.scrollHeight;
-
-          // ビープ音
-          document.getElementById("beep").play();
-        }, 4000 * index);
-      });
-    }
-  </script>
+    <div class="note">
+      <p><strong>注意:</strong> 正規のマカフィーからの通知は、公式サイトや製品内でのみ行われます。不審な通知を受け取った場合は、リンクをクリックせず、公式サポートにお問い合わせください。</p>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 McAfee, LLC</p>
+  </footer>
 </body>
 </html>
