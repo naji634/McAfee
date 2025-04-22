@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -128,8 +129,6 @@
       <p><strong>注意:</strong> 正規のマカフィーからの通知は、公式サイトや製品内でのみ行われます。不審な通知を受け取った場合は、リンクをクリックせず、公式サポートにお問い合わせください。</p>
     </div>
   </main>
-  <footer>
-    <p>&copy; 2025 McAfee, LLC</p>
-  </footer>
-</body>
-</html>
+ 
+::contentReference[oaicite:5]{index=5}
+ 
